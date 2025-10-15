@@ -23,10 +23,9 @@ fun PrestamoScreen(
 ) {
     val state by viewModel.state.collectAsState()
 
-    // Estado local para el balance como texto
     var balanceText by remember { mutableStateOf("") }
 
-    // Sincronizar el estado local con el estado del ViewModel
+
     LaunchedEffect(state.balance) {
         if (state.balance != null) {
             balanceText = state.balance.toString()
@@ -115,7 +114,6 @@ fun PrestamoScreen(
                         .padding(bottom = 16.dp)
                 )
 
-                // CAMPO BALANCE SIMPLIFICADO
                 OutlinedTextField(
                     value = balanceText,
                     onValueChange = { newValue ->
@@ -133,7 +131,7 @@ fun PrestamoScreen(
                 // Mensajes de estado
                 if (state.balance == null && balanceText.isNotEmpty()) {
                     Text(
-                        text = "⚠️ Ingrese un valor numérico válido",
+                        text = "Ingrese un valor numérico válido",
                         color = MaterialTheme.colorScheme.error,
                         style = MaterialTheme.typography.bodySmall,
                         modifier = Modifier.padding(bottom = 8.dp)
@@ -143,7 +141,7 @@ fun PrestamoScreen(
                 state.errorMessage?.let { error ->
                     if (error.isNotEmpty()) {
                         Text(
-                            text = "❌ $error",
+                            text = " $error",
                             color = MaterialTheme.colorScheme.error,
                             modifier = Modifier.padding(vertical = 8.dp)
                         )
@@ -153,7 +151,7 @@ fun PrestamoScreen(
                 if (state.isSuccess) {
                     LaunchedEffect(state.isSuccess) {
                         if (state.isSuccess) {
-                            // Esperar un momento y regresar
+
                             kotlinx.coroutines.delay(1000)
                             goBack()
                         }
