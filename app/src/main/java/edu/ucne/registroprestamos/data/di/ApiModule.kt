@@ -18,7 +18,7 @@ import javax.inject.Singleton
 @InstallIn(SingletonComponent::class)
 object ApiModule {
 
-    // URL de la API de tu amigo - actualiza si es diferente
+
     private const val BASE_URL = "https://gestionprestamosapi.somee.com/"
 
     @Provides
